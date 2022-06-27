@@ -19,13 +19,19 @@
 import warnings
 import numpy as np
 from numpy.linalg import norm
-from .quaternion import Quaternion
+from quaternion import Quaternion
 
+#use this repo for visualization
+#https://github.com/thecountoftuscany/PyTeapot-Quaternion-Euler-cube-rotation
+
+# More information on the algorithm can be found at http://www.x-io.co.uk/open-source-imu-and-ahrs-algorithms/.
+
+# This implementation was done at the Cognitive Systems Lab (CSL) of the Karlsruhe Institute of Technology: http://csl.anthropomatik.kit.edu/
 
 class MadgwickAHRS:
-    samplePeriod = 1/256
+    samplePeriod = 1/160
     quaternion = Quaternion(1, 0, 0, 0)
-    beta = 1
+    beta = 0.5
 
     def __init__(self, sampleperiod=None, quaternion=None, beta=None):
         """
